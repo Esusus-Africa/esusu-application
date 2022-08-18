@@ -1,0 +1,23 @@
+RewriteEngine on
+RewriteRule ^acceptWalletPmt acceptWalletPmt.php
+RewriteRule ^merchantInfo merchantInfo.php
+RewriteRule ^listWalletAcct/([0-9]+)$ listWalletAcct.php?id=$1
+RewriteRule ^listWalletAcct listWalletAcct.php
+RewriteRule ^resetPwd resetPwd.php
+RewriteRule ^changeTPin changeTPin.php
+RewriteRule ^changePassword changePassword.php
+RewriteRule ^walletHistory/([0-9]+)/([A-Za-z0-9]+)$ walletHistory.php?id=$1&freq=$2
+RewriteRule ^walletHistory/([0-9]+)/([A-Za-z0-9]+)/$ walletHistory.php?id=$1&freq=$2
+RewriteRule ^walletHistory walletHistory.php
+RewriteRule ^wHistoryByDate wHistoryByDate.php
+RewriteRule ^activateCustomer activateCustomer.php
+RewriteRule ^accountInfo/([0-9]+)$ accountInfo.php?id=$1
+RewriteRule ^accountInfo/([0-9]+)$ accountInfo.php?id=$1
+RewriteRule ^accountInfo/([0-9]+)$ accountInfo.php?id=$1
+RewriteRule ^accountInfo accountInfo.php
+RewriteRule ^register register.php
+RewriteRule ^([A-Za-z0-9]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9-]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9_]+)$ index.php?id=$1
+RewriteRule ^([^/.]+)/?$ $1.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

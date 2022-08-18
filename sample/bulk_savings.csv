@@ -1,0 +1,3 @@
+account_no,payment_type,amount,remark,charges,transaction_type,balance_to_impact
+12345667,Deposit,2000,deposit,0,Cash,ledger
+23466789,Withdraw,1000,withdraw contribution,100,Bank,target

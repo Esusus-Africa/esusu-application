@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteRule ^settlement_notif/([A-Za-z0-9]+)$ settlement_notif.php?id=$1
+RewriteRule ^settlement_notif/([A-Za-z0-9-]+)$ settlement_notif.php?id=$1
+RewriteRule ^settlement_notif/([A-Za-z0-9=]+)$ settlement_notif.php?id=$1
+RewriteRule ^settlement_notif settlement_notif.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

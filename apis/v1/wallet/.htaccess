@@ -1,0 +1,20 @@
+RewriteEngine on
+RewriteRule ^databundle databundle.php
+RewriteRule ^dataProduct/([A-Za-z0-9]+)$ dataProduct.php?id=$1
+RewriteRule ^dataProduct/([A-Za-z0-9+]+)$ dataProduct.php?id=$1
+RewriteRule ^dataProduct dataProduct.php
+RewriteRule ^mobileTopup mobileTopup.php
+RewriteRule ^fundTransfer fundTransfer.php
+RewriteRule ^nameEnquiry/([0-9]+)/([0-9]+)$ nameEnquiry.php?id=$1&freq=$2
+RewriteRule ^nameEnquiry/([0-9]+)/([0-9]+)/$ nameEnquiry.php?id=$1&freq=$2
+RewriteRule ^nameEnquiry nameEnquiry.php
+RewriteRule ^allBank allBank.php
+RewriteRule ^fetchHistoryByDate fetchHistoryByDate.php
+RewriteRule ^walletHistory/([A-Za-z]+)$ walletHistory.php?freq=$1
+RewriteRule ^walletHistory walletHistory.php
+RewriteRule ^fetchWalletByDate fetchWalletByDate.php
+RewriteRule ^walletAccount/([A-Za-z]+)$ walletAccount.php?freq=$1
+RewriteRule ^walletAccount walletAccount.php
+RewriteRule ^generateWallet generateWallet.php
+RewriteRule ^([^/.]+)/?$ $1.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

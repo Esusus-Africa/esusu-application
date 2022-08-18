@@ -1,0 +1,14 @@
+RewriteEngine on
+RewriteRule ^transStatus/([A-Za-z0-9]+)$ transStatus.php?id=$1
+RewriteRule ^transStatus/([A-Za-z0-9-]+)$ transStatus.php?id=$1
+RewriteRule ^transStatus/([A-Za-z0-9=]+)$ transStatus.php?id=$1
+RewriteRule ^transStatus transStatus.php
+RewriteRule ^p2pTransfer/([A-Za-z0-9]+)$ p2pTransfer.php?id=$1
+RewriteRule ^p2pTransfer/([A-Za-z0-9-]+)$ p2pTransfer.php?id=$1
+RewriteRule ^p2pTransfer/([A-Za-z0-9=]+)$ p2pTransfer.php?id=$1
+RewriteRule ^p2pTransfer p2pTransfer.php
+RewriteRule ^([A-Za-z0-9]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9-]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9_]+)$ index.php?id=$1
+RewriteRule ^([^/.]+)/?$ $1.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

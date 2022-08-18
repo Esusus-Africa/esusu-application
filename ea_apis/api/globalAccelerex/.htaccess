@@ -1,0 +1,14 @@
+RewriteEngine on
+RewriteRule ^terminal/([A-Za-z0-9]+)$ terminal.php?id=$1
+RewriteRule ^terminal/([A-Za-z0-9-]+)$ terminal.php?id=$1
+RewriteRule ^terminal/([A-Za-z0-9=]+)$ terminal.php?id=$1
+RewriteRule ^terminal terminal.php
+RewriteRule ^notification/([A-Za-z0-9]+)$ notification.php?id=$1
+RewriteRule ^notification/([A-Za-z0-9-]+)$ notification.php?id=$1
+RewriteRule ^notification/([A-Za-z0-9=]+)$ notification.php?id=$1
+RewriteRule ^notification notification.php
+RewriteRule ^reversal/([A-Za-z0-9]+)$ reversal.php?id=$1
+RewriteRule ^reversal/([A-Za-z0-9-]+)$ reversal.php?id=$1
+RewriteRule ^reversal/([A-Za-z0-9=]+)$ reversal.php?id=$1
+RewriteRule ^reversal reversal.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

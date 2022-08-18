@@ -1,0 +1,12 @@
+RewriteEngine on
+RewriteRule ^accountInfo/([A-Za-z0-9]+)$ accountInfo.php?id=$1
+RewriteRule ^accountInfo accountInfo.php
+RewriteRule ^validatePin/([A-Za-z0-9]+)$ validatePin.php?id=$1
+RewriteRule ^validatePin validatePin.php
+RewriteRule ^appActivation/([A-Za-z0-9]+)$ appActivation.php?id=$1
+RewriteRule ^appActivation appActivation.php
+RewriteRule ^([A-Za-z0-9]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9-]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9_]+)$ index.php?id=$1
+RewriteRule ^([^/.]+)/?$ $1.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

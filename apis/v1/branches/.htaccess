@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteRule ^branchTrans/([A-Za-z0-9]+)$ branchTrans.php?id=$1
+RewriteRule ^branchTrans branchTrans.php
+RewriteRule ^([A-Za-z0-9]+)$ index.php?id=$1
+RewriteRule ^([^/.]+)/?$ $1.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

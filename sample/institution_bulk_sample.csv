@@ -1,0 +1,4 @@
+institution_logo,institution_name,license_no,location,state,country,official_email,official_phone,sms_charges,withdrawal_fee,d_type(Partnership),d_image,d_name,gender,email,mobile_no,moi,id_number,username,bvn
+,,,,,,,,,,d_type(Partnership),d_image,d_name,gender,email,mobile_no,moi,id_number,username,bvn
+,,,,,,,,,,d_type(Partnership),d_image,d_name,gender,email,mobile_no,moi,id_number,username,bvn
+institution_logo,institution_name,license_no,location,state,country,official_email,official_phone,sms_charges,withdrawal_fee,d_type(Sole Proprietorship),d_image,d_name,gender,email,mobile_no,moi,id_number,username,bvn

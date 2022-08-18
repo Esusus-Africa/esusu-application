@@ -1,0 +1,73 @@
+<?php 
+error_reporting(0); 
+include "../config/session.php";
+?>  
+
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="../dist/css/style.css" />
+</head>
+<body>
+<br><br><br><br><br><br><br><br><br>
+<div style="width:100%;text-align:center;vertical-align:bottom">
+		<div class="loader"></div>
+<?php
+include("../config/restful_apicalls.php");
+
+$result = array();
+$query = mysqli_query($link, "SELECT * FROM systemset") or die (mysqli_error($link));		
+$r = mysqli_fetch_object($query);
+
+$txid =  mysqli_real_escape_string($link, $_GET['txid']);
+$pcode = mysqli_real_escape_string($link, $_GET['pcode']);
+$scode = mysqli_real_escape_string($link, $_GET['scode']);
+
+$search_splan = mysqli_query($link, "SELECT * FROM savings_plan WHERE plan_code = '$pcode'");
+$fetch_splan = mysqli_fetch_object($search_splan);
+$merchantid_others = $fetch_splan->merchantid_others;
+$vendorid = $fetch_splan->branchid;
+
+$search_vendors = mysqli_query($link, "SELECT * FROM vendor_reg WHERE companyid = '$vendorid'");
+$v_num = mysqli_num_rows($search_vendors);
+$fetch_vendors = mysqli_fetch_object($search_vendors);
+
+$select_rave = mysqli_query($link, "SELECT * FROM member_settings WHERE companyid = '$bbranchid'") or die (mysqli_error($link));
+$row_rave = mysqli_fetch_object($select_rave);
+  
+$rave_secret_key = ($row_rave->rave_status == "Enabled") ? $row_rave->rave_secret_key : $r->secret_key;
+
+$search_restapi = mysqli_query($link, "SELECT * FROM restful_apisetup WHERE api_name = 'subscription_action'");
+$fetch_restapi = mysqli_fetch_object($search_restapi);
+$api_url = $fetch_restapi->api_url;
+
+// Pass the subaccount name, settlement bank account, account number and percentage charges
+$postdata =  array(
+	"seckey" => $rave_secret_key
+);
+
+$url = $api_url.$txid."/cancel?fetch_by_tx=1";
+	
+$make_call = callAPI('POST', $url, json_encode($postdata));
+$result = json_decode($make_call, true);
+
+if($result['status'] == "success"){
+
+	$update_records = mysqli_query($link, "UPDATE savings_subscription SET status = 'Disabled' WHERE subscription_code = '$scode'");
+	
+	echo '<meta http-equiv="refresh" content="2;url=my_savings_plan.php?tid='.$_SESSION['tid'].'&&mid='.((isset($_GET['Takaful'])) ? 'NTA0' : ((isset($_GET['Savings'])) ? 'NTAw' : 'NDA3')).''.((isset($_GET['Takaful'])) ? '&&Takaful' : ((isset($_GET['Health'])) ? '&&Health' : ((isset($_GET['Savings'])) ? '&&Savings' : ''))).'">';
+	echo '<br>';
+	echo '<span class="itext" style="color: blue;">'.$result['message'].'</span>';
+	
+}
+else{
+
+	echo '<meta http-equiv="refresh" content="2;url=my_savings_plan.php?tid='.$_SESSION['tid'].'&&mid='.((isset($_GET['Takaful'])) ? 'NTA0' : ((isset($_GET['Savings'])) ? 'NTAw' : 'NDA3')).''.((isset($_GET['Takaful'])) ? '&&Takaful' : ((isset($_GET['Health'])) ? '&&Health' : ((isset($_GET['Savings'])) ? '&&Savings' : ''))).'">';
+	echo '<br>';
+	echo '<span class="itext" style="color: orange">'.$result['message'].$rave_secret_key.'</span>';
+
+}
+?>
+</div>
+</body>
+</html>

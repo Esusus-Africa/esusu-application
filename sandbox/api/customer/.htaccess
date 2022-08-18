@@ -1,0 +1,10 @@
+RewriteEngine on
+RewriteRule ^bybranch/([A-Za-z0-9]+)$ bybranch.php?id=$1
+RewriteRule ^bybranch bybranch.php
+RewriteRule ^bylimit/([A-Za-z0-9]+)$ bylimit.php?id=$1
+RewriteRule ^bylimit bylimit.php
+RewriteRule ^([A-Za-z0-9]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9-]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9_]+)$ index.php?id=$1
+RewriteRule ^([^/.]+)/?$ $1.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

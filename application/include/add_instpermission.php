@@ -1,0 +1,398 @@
+<div class="row">
+    
+		    <section class="content">  
+	        <div class="box box-success">
+            <div class="box-body">
+              <div class="table-responsive">
+             <div class="box-body">
+<form method="post">
+			 <a href="permission_list.php?id=<?php echo $_SESSION['tid']; ?>&&mid=<?php echo base64_encode("413"); ?>"><button type="button" class="btn btn-flat bg-orange"><i class="fa fa-mail-reply-all"></i>&nbsp;Back</button></a> 
+			 <input type="checkbox" id="select_all"/> <b>Tick Here to Enable all modules</b>
+
+	<hr>	
+
+<form class="form-horizontal" method="post" enctype="multipart/form-data">
+			  <?php echo '<div class="alert bg-blue fade in" >
+			  <a href = "#" class = "close" data-dismiss= "alert"> &times;</a>
+  				<strong>Add Module Permission</strong> | <label style="color: white;">Here you declare which module you want the user to get access to in their respective account.</label></div>'?>	
+<div class="box-body table-responsive">
+
+			<table width="100%" border="1" bordercolor="#000000">
+			  <tr class="form-group" width="100%">
+				<td>
+					
+				<div class="form-group">
+					<label for="" class="col-sm-2 control-label" style="color:blue;">User Name:</label>
+	                <div class="col-sm-10">
+	                <select name="tide"  class="form-control select2" required>
+						<option selected>Selected Staff...</option>
+						<?php
+						$search_user = mysqli_query($link, "SELECT * FROM institution_user WHERE id != '".$_SESSION['tid']."'") or die ("Error: " . mysqli_error($link));
+						while($get_users = mysqli_fetch_array($search_user))
+						{
+						?>		
+						<option value="<?php echo $get_users['id']; ?>"><?php echo $get_users['d_name']; ?></option>
+						<?php } ?>
+					
+					</select>
+	                </div>			
+	            </div>
+				
+				</td>
+			  </tr>
+			</table>
+			
+			<div class="form-group">
+			<hr>
+			<div>
+				
+			<table width="100%" border="1">
+			  <tr bgcolor="orange">
+				<td width="25%"><div align="left"><strong>&nbsp;BRANCH SETTINGS</strong></div></td>
+			  </tr>
+			
+  			  <tr width="100%">
+			   	<td><div align="center">Branch Tab:<p> <input name="branch_tab" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"><p></div></td>
+			   	<td><div align="center">Add:<p> <input name="add_branch" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">List/View:<p> <input name="list_branch" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Edit/Update:<p> <input name="edit_branch" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+				<td><div align="center">Delete:<p> <input name="del_branch" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			  </tr>
+			  
+			</table>
+			<hr>
+			
+			<table width="100%" border="1">
+			  <tr bgcolor="orange">
+				<td width="25%"><div align="left"><strong>&nbsp;CUSTOMER MGT. SETTINGS</strong></div></td>
+			  </tr>
+			
+  			  <tr>
+			   	<td><div align="center">Customer Tab:<p> <input name="customer_tab" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Add:<p> <input name="add_customer" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">List/View All:<p> <input name="list_customer" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+				<td><div align="center">View Borrowers:<p> <input name="list_borrower" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+				<td><div align="center">Delete:<p> <input name="del_customer" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			  <tr>
+    			</tr>
+				<td><div align="center">View Account Info:<p> <input name="view_acct_info" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			   	<td><div align="center">Edit/Update:<p> <input name="edit_customer" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			   	<td><div align="center">Add borrower list:<p> <input name="add_to_borrower" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			   	<td><div align="center">Send SMS:<p> <input name="send_sms" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  				<td><div align="center">Send Email:<p> <input name="send_email" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			  </tr>
+				  
+			</table>
+			<hr>
+			
+			<table width="100%" border="1">
+			  <tr bgcolor="orange">
+				<td width="25%"><div align="left"><strong>&nbsp;WALLET MGT. SETTINGS</strong></div></td>
+			  </tr>
+			
+  			  <tr>
+			   	<td><div align="center">Wallet Tab:<p> <input name="wallet_tab" id="optionsCheckbox" class="checkbox"  name="selector[]"  type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Transfer Fund:<p> <input name="transfer_fund" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Add Transfer Recipients:<p> <input name="add_transfer_recipients" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Add Fund to Balance:<p> <input name="add_fund_tobalance" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+				<td><div align="center">View Transfer Recipients:<p> <input name="view_transfer_recipients" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			  </tr>
+
+  			  <tr>
+			   	<td><div align="center">Buy Airtime:<p> <input name="buy_airtime" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   </tr>
+				  
+			</table>
+			<hr>
+			
+			<table width="100%" border="1">
+			  <tr bgcolor="orange">
+				<td width="25%"><div align="left"><strong>&nbsp;LOAN MGT. SETTINGS</strong></div></td>
+			  </tr>
+			
+  			  <tr>
+			   	<td><div align="center">Loan Tab:<p> <input name="loan_tab" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Add:<p> <input name="add_loan" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">List/View All:<p> <input name="list_loan" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Due Loan:<p> <input name="due_loan" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+				<td><div align="center">View Past Maturity Date Loan:<p> <input name="past_maturity_date_loan" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			  </tr>
+			  <tr>
+  			   	<td><div align="center">View Principal Outstanding Loan:<p> <input name="view_poutstanding" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			   	<td><div align="center">Approve Loan:<p> <input name="approve_loan" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			   	<td><div align="center">View Loan Details:<p> <input name="view_loan_details" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			   	<td><div align="center">Delete Loan:<p> <input name="del_loan" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  				<td><div align="center">Print:<p> <input name="print_loan" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			  </tr>
+			  <tr>
+				<td><div align="center">Export Excel:<p> <input name="export_excel_loan" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			  </tr>
+				  
+			</table>
+			<hr>
+			
+			<table width="100%" border="1">
+			  <tr bgcolor="orange">
+				<td width="25%"><div align="left"><strong>&nbsp;LOAN PAYMENT SETTINGS</strong></div></td>
+			  </tr>
+			
+  			  <tr>
+			   	<td><div align="center">Payment Tab:<p> <input name="loanpay_tab" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Add:<p> <input name="add_payment" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">List/View:<p> <input name="list_payment" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Delete:<p> <input name="del_payment" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+				<td><div align="center">Print:<p> <input name="print_payment" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			  </tr>
+			  <tr>
+				<td><div align="center">Export Excel:<p> <input name="export_excel_lpayment" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			  </tr>
+				  
+			</table>
+			<hr>
+			
+			<table width="100%" border="1">
+			  <tr bgcolor="orange">
+				<td width="25%"><div align="left"><strong>&nbsp;EMPLOYEE MGT. SETTINGS</strong></div></td>
+			  </tr>
+			
+  			  <tr>
+			   	<td><div align="center">Employee Tab:<p> <input name="emp_tab" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Add:<p> <input name="add_emp" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">List/View:<p> <input name="list_emp" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Edit/Update:<p> <input name="edit_emp" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+				<td><div align="center">Send SMS:<p> <input name="send_empsms" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			  </tr>
+			  <tr>
+  			   	<td><div align="center">Delete:<p> <input name="del_emp" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			   	<td><div align="center">Print:<p> <input name="print_emp" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			   	<td><div align="center">Export Excel:<p> <input name="export_excel_emp" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			  </tr>
+			 
+			</table>
+			<hr>
+			
+			
+			<table width="100%" border="1">
+			  <tr bgcolor="orange">
+				<td width="25%"><div align="left"><strong>&nbsp;EXPENSES SETTINGS</strong></div></td>
+			  </tr>
+			
+  			  <tr width="100%">
+			   	<td><div align="center">Expense Tab:<p> <input name="expense_tab" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"><p></div></td>
+			   	<td><div align="center">Add:<p> <input name="add_expense" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">List/View:<p> <input name="list_expense" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Edit/Update:<p> <input name="edit_expense" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+				<td><div align="center">Delete:<p> <input name="del_expense" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			  </tr>
+			  
+			</table>
+			<hr>
+			
+			<table width="100%" border="1">
+			  <tr bgcolor="orange">
+				<td width="25%"><div align="left"><strong>&nbsp;PAYROLL SETTINGS</strong></div></td>
+			  </tr>
+			
+  			  <tr width="100%">
+			   	<td><div align="center">Payroll Tab:<p> <input name="payroll_tab" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"><p></div></td>
+			   	<td><div align="center">Add:<p> <input name="add_payroll" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">List/View:<p> <input name="list_payroll" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Edit/Update:<p> <input name="edit_payroll" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+				<td><div align="center">Delete:<p> <input name="del_payroll" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			  </tr>
+			  
+			</table>
+			<hr>
+			
+			<table width="100%" border="1">
+			  <tr bgcolor="orange">
+				<td width="25%"><div align="left"><strong>&nbsp;SAVINGS SYS. SETTINGS</strong></div></td>
+			  </tr>
+			
+  			  <tr>
+			   	<td><div align="center">Savings Tab:<p> <input name="savings_tab" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Deposit Fund:<p> <input name="s_deposit_fund" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Withdraw Fund:<p> <input name="s_withdraw_fund" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">View All Transaction:<p> <input name="list_transaction" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+				<td><div align="center">Enable Verify Account Button:<p> <input name="verify_account" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			  </tr>
+			  <tr>
+  			   	<td><div align="center">Delete:<p> <input name="del_transaction" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			   	<td><div align="center">Print:<p> <input name="print_transaction" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			   	<td><div align="center">Export Excel:<p> <input name="export_excel_transaction" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			  </tr>
+			 
+			</table>
+			<hr>
+			
+			<table width="100%" border="1">
+			  <tr bgcolor="orange">
+				<td width="25%"><div align="left"><strong>&nbsp;REPORT SYS. SETTINGS</strong></div></td>
+			  </tr>
+			
+  			  <tr>
+			   	<td><div align="center">Report Tab:<p> <input name="report_tab" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Borrower Report:<p> <input name="borrower_report" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Collection Report:<p> <input name="collection_report" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Collector Report:<p> <input name="collector_report" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			  </tr>
+				  
+			</table>
+			<hr>
+
+			<table width="100%" border="1">
+			  <tr bgcolor="orange">
+				<td width="25%"><div align="left"><strong>&nbsp;CONFIGURATION SETTINGS</strong></div></td>
+			  </tr>
+			
+  			  <tr>
+			   	<td><div align="center">Configuration Tab:<p> <input name="config_tab" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">Company Setup:<p> <input name="company_setup" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+			   	<td><div align="center">SMS Gateway Settings:<p> <input name="smsgateway_settings" id="optionsCheckbox" class="checkbox"  name="selector[]" type="checkbox" value="On"></p></div></td>
+  			  </tr>
+				  
+			</table>
+			<hr>
+	
+
+		<div align="right">
+            <div class="box-footer">
+				<button type="submit" class="btn bg-blue" name="save"><i class="fa fa-save">&nbsp;Save Module</i></button>
+			</div>
+		</div>
+
+<?php
+if(isset($_POST['save']))
+{
+//$id = $_POST['selector'];
+$tide = mysqli_real_escape_string($link, $_POST['tide']);
+
+$verify = mysqli_query($link, "SELECT * FROM staff_module_permission WHERE staff_tid = '$tide'") or die ("Error: " . mysqli_error($link));
+$get_verify = mysqli_num_rows($verify);
+if($get_verify == 1)
+{
+	echo "<script>alert('Error: Module Permission Already granted. Please visit permission list to see!!'); </script>";
+}
+else{
+
+$searchinst = mysqli_query($link, "SELECT * FROM institution_user WHERE id = '$tide'");
+$fetchinst = mysqli_fetch_array($searchinst);
+
+$instid = $fetchinst['institution_id'];
+//Starting of Branch Settings
+$branch_tab = (isset($_POST['branch_tab'])) ? 1 : 0;
+$add_branch = (isset($_POST['add_branch'])) ? 1 : 0;
+$list_branch = (isset($_POST['list_branch'])) ? 1 : 0;
+$edit_branch = (isset($_POST['edit_branch'])) ? 1 : 0;
+$del_branch = (isset($_POST['del_branch'])) ? 1 : 0;
+
+//Starting of Customer Mgt. Settings
+$customer_tab = (isset($_POST['customer_tab'])) ? 1 : 0;
+$add_customer = (isset($_POST['add_customer'])) ? 1 : 0;
+$list_customer = (isset($_POST['list_customer'])) ? 1 : 0;
+$list_borrower = (isset($_POST['list_borrower'])) ? 1 : 0;
+$del_customer = (isset($_POST['del_customer'])) ? 1 : 0;
+$view_acct_info = (isset($_POST['view_acct_info'])) ? 1 : 0;
+$edit_customer = (isset($_POST['edit_customer'])) ? 1 : 0;
+$add_to_borrower = (isset($_POST['add_to_borrower'])) ? 1 : 0;
+$send_sms = (isset($_POST['send_sms'])) ? 1 : 0;
+$send_email = (isset($_POST['send_email'])) ? 1 : 0;
+
+//Starting of Wallet Mgt. Settings
+$wallet_tab = (isset($_POST['wallet_tab'])) ? 1 : 0;
+$transfer_fund = (isset($_POST['transfer_fund'])) ? 1 : 0;
+$add_transfer_recipients = (isset($_POST['add_transfer_recipients'])) ? 1 : 0;
+$add_fund_tobalance = (isset($_POST['add_fund_tobalance'])) ? 1 : 0;
+$view_transfer_recipients = (isset($_POST['view_transfer_recipients'])) ? 1 : 0;
+$buy_airtime = (isset($_POST['buy_airtime'])) ? 1 : 0;
+
+//Starting of Loan Mgt. Settings
+$loan_tab = (isset($_POST['loan_tab'])) ? 1 : 0;
+$add_loan = (isset($_POST['add_loan'])) ? 1 : 0;
+$list_loan = (isset($_POST['list_loan'])) ? 1 : 0;
+$due_loan = (isset($_POST['due_loan'])) ? 1 : 0;
+$past_maturity_date_loan = (isset($_POST['past_maturity_date_loan'])) ? 1 : 0;
+$view_poutstanding = (isset($_POST['view_poutstanding'])) ? 1 : 0;
+$approve_loan = (isset($_POST['approve_loan'])) ? 1 : 0;
+$view_loan_details = (isset($_POST['view_loan_details'])) ? 1 : 0;
+$del_loan = (isset($_POST['del_loan'])) ? 1 : 0;
+$print_loan = (isset($_POST['print_loan'])) ? 1 : 0;
+$export_excel_loan = (isset($_POST['export_excel_loan'])) ? 1 : 0;
+
+//Starting of Loan Payment Settings
+$loanpay_tab = (isset($_POST['loanpay_tab'])) ? 1 : 0;
+$add_payment = (isset($_POST['add_payment'])) ? 1 : 0;
+$list_payment = (isset($_POST['list_payment'])) ? 1 : 0;
+$del_payment = (isset($_POST['del_payment'])) ? 1 : 0;
+$print_payment = (isset($_POST['print_payment'])) ? 1 : 0;
+$export_excel_lpayment = (isset($_POST['export_excel_lpayment'])) ? 1 : 0;
+
+//Starting of Employee Management Settings
+$emp_tab = (isset($_POST['emp_tab'])) ? 1 : 0;
+$add_emp = (isset($_POST['add_emp'])) ? 1 : 0;
+$list_emp = (isset($_POST['list_emp'])) ? 1 : 0;
+$edit_emp = (isset($_POST['edit_emp'])) ? 1 : 0;
+$send_empsms = (isset($_POST['send_empsms'])) ? 1 : 0;
+$del_emp = (isset($_POST['del_emp'])) ? 1 : 0;
+$print_emp = (isset($_POST['print_emp'])) ? 1 : 0;
+$export_excel_emp = (isset($_POST['export_excel_emp'])) ? 1 : 0;
+
+//Starting of Expenses Settings
+$expense_tab = (isset($_POST['expense_tab'])) ? 1 : 0;
+$add_expense = (isset($_POST['add_expense'])) ? 1 : 0;
+$list_expense = (isset($_POST['list_expense'])) ? 1 : 0;
+$edit_expense = (isset($_POST['edit_expense'])) ? 1 : 0;
+$del_expense = (isset($_POST['del_expense'])) ? 1 : 0;
+
+//Starting of Payroll Settings
+$payroll_tab = (isset($_POST['payroll_tab'])) ? 1 : 0;
+$add_payroll = (isset($_POST['add_payroll'])) ? 1 : 0;
+$list_payroll = (isset($_POST['list_payroll'])) ? 1 : 0;
+$edit_payroll = (isset($_POST['edit_payroll'])) ? 1 : 0;
+$del_payroll = (isset($_POST['del_payroll'])) ? 1 : 0;
+
+//Starting of Savings System Settings
+$savings_tab = (isset($_POST['savings_tab'])) ? 1 : 0;
+$s_deposit_fund = (isset($_POST['s_deposit_fund'])) ? 1 : 0;
+$s_withdraw_fund = (isset($_POST['s_withdraw_fund'])) ? 1 : 0;
+$list_transaction = (isset($_POST['list_transaction'])) ? 1 : 0;
+$verify_account = (isset($_POST['verify_account'])) ? 1 : 0;
+$del_transaction = (isset($_POST['del_transaction'])) ? 1 : 0;
+$print_transaction = (isset($_POST['print_transaction'])) ? 1 : 0;
+$export_excel_transaction = (isset($_POST['export_excel_transaction'])) ? 1 : 0;
+
+//Starting of Report System Settings
+$report_tab = (isset($_POST['report_tab'])) ? 1 : 0;
+$borrower_report = (isset($_POST['borrower_report'])) ? 1 : 0;
+$collection_report = (isset($_POST['collection_report'])) ? 1 : 0;
+$collector_report = (isset($_POST['collector_report'])) ? 1 : 0;
+
+//Starting of Global Settings
+$config_tab = (isset($_POST['config_tab'])) ? 1 : 0;
+$company_setup = (isset($_POST['company_setup'])) ? 1 : 0;
+$smsgateway_settings = (isset($_POST['smsgateway_settings'])) ? 1 : 0;
+
+$insert = mysqli_query($link, "INSERT INTO institution_module_permission VALUES(null,'$instid','$tide','$branch_tab','$add_branch','$list_branch','$edit_branch','$del_branch','$customer_tab','$add_customer','$list_customer','$list_borrower','$send_sms','$send_email','$del_customer','$view_acct_info','$edit_customer','$add_to_borrower','$wallet_tab','$transfer_fund','$add_transfer_recipients','$add_fund_tobalance','$view_transfer_recipients','$buy_airtime','$loan_tab','$add_loan','$list_loan','$due_loan','$past_maturity_date_loan','$view_poutstanding','$approve_loan','$view_loan_details','$del_loan','$print_loan','$export_excel_loan','$loanpay_tab','$add_payment','$list_payment','$del_payment','$print_payment','$export_excel_lpayment','$emp_tab','$add_emp','$list_emp','$edit_emp','$send_empsms','$del_emp','$print_emp','$export_excel_emp','$expense_tab','$add_expense','$list_expense','$del_expense','$edit_expense','$payroll_tab','$add_payroll','$list_payroll','$del_payroll','$edit_payroll','$savings_tab','$s_deposit_fund','$s_withdraw_fund','$list_transaction','$verify_account','$del_transaction','$print_transaction','$export_excel_transaction','$report_tab','$borrower_report','$collection_report','$collector_report','$config_tab','$company_setup','$smsgateway_settings')") or die ("Error: " . mysqli_error($link));
+
+if(!$insert)
+{
+echo "<script>alert('Record not inserted.....Please try again later!'); </script>";
+}
+else{
+echo "<script>alert('Permission Added Successfully!!'); </script>";
+echo "<script>window.location='institution_list.php?id=".$_SESSION['tid']."&&mid=".base64_encode("413")."'; </script>";
+}
+}
+}
+?>
+</div>				
+</form>
+                </div>
+
+				</div>	
+				</div>
+			
+</div>	
+					
+       
+</div>

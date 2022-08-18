@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteRule ^dataProduct/([A-Za-z0-9]+)$ dataProduct.php?id=$1
+RewriteRule ^dataProduct/([A-Za-z0-9+]+)$ dataProduct.php?id=$1
+RewriteRule ^dataProduct dataProduct.php
+RewriteRule ^databundle databundle.php
+RewriteRule ^airtime airtime.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

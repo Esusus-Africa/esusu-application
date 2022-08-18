@@ -1,0 +1,3 @@
+loan_type,account_number,income_amout,salary_date,employer,amount,bank_info,BVN_or_Unique_no,guarantor_name,guarantor_phone,guarantor_address,guarantor_relationship,Repayment_amount,loan_reasons
+workspace loan,1028838383,20000,7/4/2019,Dweb Nig. Ltd.,10000,"Acct No: 00088, Bank: Access",22297458577,Mr. Adepoju,234707774749,"N0 4, Araromi, Lagos",Father,13500,for rent
+business loan,1083837739,100000,7/4/2019,GIG Motor,50000,"Acct No: 00667, Bank Name: Access",22233444466,Mrs. James,234701804222,"N0 22, Ilupeju, Ibadan",Sister,55000,to pay school fee

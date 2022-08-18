@@ -1,0 +1,110 @@
+<div class="box">
+	       <div class="box-body">
+			<div class="panel panel-success">
+            <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-user"></i> Treat Member (Case)</h3>
+            </div>
+             <div class="box-body">
+                         
+			 <form class="form-horizontal" method="post" enctype="multipart/form-data">
+<hr>
+<div style="color:red; font-size:15px;"><b>Kindly state the necessary feedback gotten from the Customer and send back to the Admin for further Review.</b></div>
+<hr>
+             <div class="box-body">
+
+             	<div class="form-group">
+				  <label for="" class="col-sm-2 control-label" style="color:#009900">Case to Treat</label>
+				  <div class="col-sm-10">
+				  	<select name="status"  class="form-control select2" required>
+				  		<option selected='selected'>Select Case to Treat&hellip;</option>
+				  		<?php
+				  		$id = $_GET['id'];
+						$select_case = mysqli_query($link, "SELECT * FROM treat_treated_case WHERE status = 'Defaulted' AND id = '$id'") or die ("Error: " . mysqli_error($link));
+						while($fetch_case = mysqli_fetch_object($select_case))
+						{
+				  		?>
+							<option value="<?php echo $fetch_case->subject_line; ?>"><?php echo $fetch_case->subject_line.'&nbsp;'.'-CASE ID: '.$fetch_case->case_id; ?></option>
+						<?php
+						}
+						?>
+				  	</select>                 
+				  </div>
+				</div>
+			
+		 		<div class="form-group">
+                  	<label for="" class="col-sm-2 control-label" style="color:#009900">Case Resolution</label>
+                  	<div class="col-sm-10"><textarea name="m_case" id="editor1" class="form-control" rows="4" cols="80"></textarea></div>
+          		</div>
+
+          		<div class="form-group">
+				  <label for="" class="col-sm-2 control-label" style="color:#009900">Status</label>
+				  <div class="col-sm-10">
+				  	<select name="status"  class="form-control select2" required>
+				  		<option selected='selected'>Select the status of the Case&hellip;</option>
+						<option value="Defaulted">Defaulted</option>
+						<option value='Under Review'>Under Review / Pending</option>
+						<option value='Resolved'>Resolved</option>
+				  	</select>                 
+				  </div>
+				</div>
+
+			 </div>
+			 
+			  <div align="right">
+              <div class="box-footer">
+                				<button type="reset" class="btn btn-primary btn-flat"><i class="fa fa-times">&nbsp;Reset</i></button>
+                				<button name="save" type="submit" class="btn btn-success btn-flat"><i class="fa fa-save">&nbsp;Save</i></button>
+
+              </div>
+			  </div>
+<?php
+if(isset($_POST['save']))
+{
+$id = $_GET['id'];
+$subject_line =  mysqli_real_escape_string($link, $_POST['subject_line']);
+$m_case =  mysqli_real_escape_string($link, $_POST['m_case']);
+$status =  mysqli_real_escape_string($link, $_POST['status']);
+$case_id = "CASE-".rand(1000000000,9999999999);
+	
+	$insert = mysqli_query($link, "INSERT INTO member_case VALUES(null,'$case_id','$id','$subject_line','$m_case','$status',NOW())") or die (mysqli_error($link));
+	if(!$insert)
+	{
+		echo "<div class='alert alert-info'>Error.....Please try again later</div>";
+	}
+	else{
+		echo "<script>alert('Case Created Successfully');</script>";
+		echo "<script>window.location='query_member.php?id=".$id."&&mid=".base64_encode("403")."';</script>";
+	}
+}
+?>			  
+			 </form> 
+
+<hr>
+<?php
+$id = $_GET['id'];
+$select2 = mysqli_query($link, "SELECT * FROM member_case WHERE mid = '$id'") or die ("Error: " . mysqli_error($link));
+$find_row = mysqli_num_rows($select2);
+if(mysqli_num_rows($select2) == 0){
+	echo "<div style='color: red; font-size:15px;'><b>No Case!</b></div>";
+}else{
+while($row2 =  mysqli_fetch_array($select2))
+{
+	$search_user = mysqli_query($link, "SELECT * FROM borrowers WHERE id = '$id'") or die ("Error: " . mysqli_error($link));
+	$getting_user = mysqli_fetch_object($search_user);
+?>		  
+				<div class="box-body">
+					<p>
+						<h4><b style="color: green;"><?php echo $getting_user->fname.'&nbsp;'.$getting_user->lname; ?></b> <b style="color: red;">(<?php echo $getting_user->subject_line; ?>)</b> - <i><?php echo $getting_user->date_time; ?></i></h4>
+					</p>
+					<p>
+						<?php echo $getting_user->details; ?>
+					</p>
+				</div>
+				<hr>
+<?php } } ?>
+
+
+</div>	
+</div>	
+</div>
+</div>

@@ -1,0 +1,30 @@
+RewriteEngine on
+RewriteRule ^topupSavings topupSavings.php
+RewriteRule ^makeWithdrawalRequest makeWithdrawalRequest.php
+RewriteRule ^checkSavingsMaturityStatus/([A-Za-z0-9]+)$ checkSavingsMaturityStatus.php?id=$1
+RewriteRule ^checkSavingsMaturityStatus/([A-Za-z0-9-]+)$ checkSavingsMaturityStatus.php?id=$1
+RewriteRule ^checkSavingsMaturityStatus/([A-Za-z0-9=]+)$ checkSavingsMaturityStatus.php?id=$1
+RewriteRule ^checkSavingsMaturityStatus checkSavingsMaturityStatus.php
+RewriteRule ^lastFiveSavingsTrans/([0-9]+)$ lastFiveSavingsTrans.php?id=$1
+RewriteRule ^lastFiveSavingsTrans/([0-9]+)$ lastFiveSavingsTrans.php?id=$1
+RewriteRule ^lastFiveSavingsTrans/([0-9]+)$ lastFiveSavingsTrans.php?id=$1
+RewriteRule ^lastFiveSavingsTrans lastFiveSavingsTrans.php
+RewriteRule ^confirmCardTransactionStatus/([A-Za-z0-9]+)$ confirmCardTransactionStatus.php?id=$1
+RewriteRule ^confirmCardTransactionStatus/([A-Za-z0-9_]+)$ confirmCardTransactionStatus.php?id=$1
+RewriteRule ^confirmCardTransactionStatus/([A-Za-z0-9-]+)$ confirmCardTransactionStatus.php?id=$1
+RewriteRule ^confirmCardTransactionStatus/([A-Za-z0-9=]+)$ confirmCardTransactionStatus.php?id=$1
+RewriteRule ^confirmCardTransactionStatus confirmCardTransactionStatus.php
+RewriteRule ^activateSavingsSub activateSavingsSub.php
+RewriteRule ^sSubListByDate sSubListByDate.php
+RewriteRule ^savingsSubList/([0-9]+)/([A-Za-z0-9]+)$ savingsSubList.php?id=$1&freq=$2
+RewriteRule ^savingsSubList/([0-9]+)/([A-Za-z0-9]+)/$ savingsSubList.php?id=$1&freq=$2
+RewriteRule ^savingsSubList savingsSubList.php
+RewriteRule ^sHistoryByDate sHistoryByDate.php
+RewriteRule ^savingsHistory/([0-9]+)/([A-Za-z0-9]+)$ savingsHistory.php?id=$1&freq=$2
+RewriteRule ^savingsHistory/([0-9]+)/([A-Za-z0-9]+)/$ savingsHistory.php?id=$1&freq=$2
+RewriteRule ^savingsHistory savingsHistory.php
+RewriteRule ^([A-Za-z0-9]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9-]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9_]+)$ index.php?id=$1
+RewriteRule ^([^/.]+)/?$ $1.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

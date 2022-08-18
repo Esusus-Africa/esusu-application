@@ -1,0 +1,2 @@
+RewriteEngine on
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1

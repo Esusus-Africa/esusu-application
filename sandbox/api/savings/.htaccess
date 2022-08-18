@@ -1,0 +1,29 @@
+RewriteEngine on
+RewriteRule ^userTrans/([A-Za-z0-9]+)$ userTrans.php?id=$1
+RewriteRule ^userTrans/([A-Za-z0-9-]+)$ userTrans.php?id=$1
+RewriteRule ^userTrans userTrans.php
+RewriteRule ^transLimit/([A-Za-z0-9]+)$ transLimit.php?id=$1
+RewriteRule ^transLimit transLimit.php
+RewriteRule ^deposit/([A-Za-z0-9]+)$ deposit.php?id=$1
+RewriteRule ^deposit deposit.php
+RewriteRule ^ledgerBal/([A-Za-z0-9]+)$ ledgerBal.php?id=$1
+RewriteRule ^ledgerBal ledgerBal.php
+RewriteRule ^totalLedgerSavings/([A-Za-z0-9]+)$ totalLedgerSavings.php?id=$1
+RewriteRule ^totalLedgerSavings totalLedgerSavings.php
+RewriteRule ^withdraw/([A-Za-z0-9]+)$ withdraw.php?id=$1
+RewriteRule ^withdraw withdraw.php
+RewriteRule ^depByStaff/([A-Za-z0-9]+)$ depByStaff.php?id=$1
+RewriteRule ^depByStaff/([A-Za-z0-9-]+)$ depByStaff.php?id=$1
+RewriteRule ^depByStaff/([A-Za-z0-9=]+)$ depByStaff.php?id=$1
+RewriteRule ^depByStaff depByStaff.php
+RewriteRule ^withByStaff/([A-Za-z0-9]+)$ withByStaff.php?id=$1
+RewriteRule ^withByStaff/([A-Za-z0-9-]+)$ withByStaff.php?id=$1
+RewriteRule ^withByStaff/([A-Za-z0-9=]+)$ withByStaff.php?id=$1
+RewriteRule ^withByStaff withByStaff.php
+RewriteRule ^withCharges/([A-Za-z0-9]+)$ withCharges.php?id=$1
+RewriteRule ^withCharges withCharges.php
+RewriteRule ^([A-Za-z0-9]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9-]+)$ index.php?id=$1
+RewriteRule ^([A-Za-z0-9_]+)$ index.php?id=$1
+RewriteRule ^([^/.]+)/?$ $1.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

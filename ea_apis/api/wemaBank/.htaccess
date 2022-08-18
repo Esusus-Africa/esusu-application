@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteRule ^transNotification transNotification.php
+RewriteRule ^accountLookup accountLookup.php
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

@@ -1,0 +1,11 @@
+body.loading::before {
+    content: 'Loading...';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url('');
+    background-position: 50% 50%; /* center */
+    background-color:rgba(255, 255, 255, 0.7);
+}
